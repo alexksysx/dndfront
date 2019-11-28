@@ -6,30 +6,37 @@ class Race extends React.Component {
         super(props);
         this.state = {
             raceData: null,
-            test: "lol",
+            name: '',
+            description: ''
         };
-        console.log(this.state.test)
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
-        const URL = this.props.url + "race/" + this.props.id;
-        getData(URL).then(data=> {this.setState({raceData : data})})
+    handleChange(event) {
+        this.setState({name : event.target.value});
+    }
+
+    handleSubmit(event) {
+        this.createRace(this.props.url, this.state.name)
+        event.preventDefault();
     }
 
     render() {
-        const data = this.state.raceData;
-        if(!data) return (<div>Loading data</div>);
+        // const data = this.state.raceData;
+        // if(!data) return (<div>Loading data</div>);
         return(
             <div>
-                <p>{data.name}</p>
-                <button onClick = {this.createRace}>test</button>
+                <form onSubmit={this.handleSubmit}>
+                    <input name="тame" type="text" value={this.state.name} onChange={this.handleChange} />
+                    <input type="submit" value="Send" />
+                </form> 
             </div>
         );
     }
 
-    createRace() {
-        const URL = "http://alexksysx.me:8080/dndServerTest/race";
-        postData(URL, {name : "React"}).then(data => console.log(JSON.stringify(data)));
+    createRace(url = '', rName) {
+        postData(url + "race/", {name : rName}).then(data => console.log(JSON.stringify(data)));
     }
 
 }

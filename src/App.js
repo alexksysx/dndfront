@@ -12,7 +12,8 @@ class App extends React.Component {
         <h1>Hello world!</h1>
         <Race 
           url={URL}
-          id={78} />
+          // id={78}
+        />
       </div>
     );
   }
