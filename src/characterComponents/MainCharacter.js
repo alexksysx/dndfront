@@ -1,9 +1,9 @@
 import React from 'react';
-import CreateRace from './CreateRace';
-import ViewRace from './ViewRace';
-import ChooseRaceMode from './ChooseRaceMode';
+import CreateCharacter from './CreateCharacter';
+import ViewCharacter from './ViewCharacter';
+import ChooseCharacterMode from "./ChooseCharacterMode";
 
-class MainRace extends React.Component {
+class MainCharacter extends React.Component {
     constructor(props) {
         super(props);
         this.state={
@@ -20,13 +20,13 @@ class MainRace extends React.Component {
     render() {
         let data;
         if (this.state.action === "view") 
-            data  = (<ViewRace/>);
+            data  = (<ViewCharacter />);
         if (this.state.action === "create") 
-            data  = (<CreateRace/>);
+            data  = (<CreateCharacter />);
 
         return(
             <div>
-                <ChooseRaceMode set={this.setMode} />
+                <ChooseCharacterMode set={this.setMode} />
                 {data}
             </div>
         );
@@ -34,4 +34,4 @@ class MainRace extends React.Component {
 
 }
 
-export default MainRace;
+export default MainCharacter;
