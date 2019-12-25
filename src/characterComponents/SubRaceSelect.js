@@ -8,9 +8,12 @@ class SubRaceSelect extends React.Component {
         if (this.props.race.subRaces.length == 0) return null;
         if (this.props.race.subRaces.length == 1) return null;
         return(
-            <select onChange={this.props.handle}>
-                {this.props.race.subRaces.map((subrace, key) => <option value={subrace.id}>{subrace.id}</option>)} 
-            </select>
+            <div>
+                <label>Select subrace:</label>
+                <select onChange={this.props.handle}>
+                    {this.props.race.subRaces.map((subrace, key) => <option value={subrace.id}>{subrace.id}</option>)} 
+                </select>
+            </div>
         );
     }
 }
