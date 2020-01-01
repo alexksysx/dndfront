@@ -5,7 +5,6 @@ import ChooseRaceMode from './ChooseRaceMode';
 
 interface IState {
     action: string,
-    id: number
 }
 
 class MainRace extends React.Component<any, IState> {
@@ -13,7 +12,6 @@ class MainRace extends React.Component<any, IState> {
         super(props);
         this.state={
             action: "view",
-            id: 0
         };
         this.setMode = this.setMode.bind(this);
     }

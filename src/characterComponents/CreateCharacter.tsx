@@ -7,7 +7,7 @@ import SubRaceSelect from './SubRaceSelect';
 interface IState {
     name: string,
     race: number,
-    raceData: any,
+    raceData: Array<any>,
     subRace: number,
     raceStatus: boolean
 }
@@ -20,7 +20,7 @@ class CreateRace extends React.Component<any, IState> {
             race: 0,
             raceStatus: false,
             subRace: 0,
-            raceData: null, 
+            raceData: [], 
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,7 +40,7 @@ class CreateRace extends React.Component<any, IState> {
 
     handleRaceSelect(event: any) {
         this.setState({race: event.target.value});
-        let race = this.state.raceData.find((race: { id: number; }) => race.id == event.target.value);
+        let race = this.state.raceData.find((race => race.id == event.target.value));
         if (race.subRaces.length != 0) {
             this.setState({subRace: race.subRaces[0].id});
         }

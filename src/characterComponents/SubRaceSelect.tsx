@@ -16,7 +16,7 @@ class SubRaceSelect extends React.Component<IProps, any> {
             <div>
                 <label>Select subrace:</label>
                 <select onChange={this.props.handle}>
-                    {this.props.race.subRaces.map((subrace: any, key: any) => <option value={subrace.id}>{subrace.id}</option>)} 
+                    {this.props.race.subRaces.map((subrace: any, key: any) => <option value={subrace.id}>{subrace.name}</option>)} 
                 </select>
             </div>
         );
