@@ -1,10 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import CreateRace from './CreateRace';
 import ViewRace from './ViewRace';
 import ChooseRaceMode from './ChooseRaceMode';
 
-class MainRace extends React.Component {
-    constructor(props) {
+interface IState {
+    action: string,
+    id: number
+}
+
+class MainRace extends React.Component<any, IState> {
+    constructor(props :any) {
         super(props);
         this.state={
             action: "view",
@@ -13,8 +18,8 @@ class MainRace extends React.Component {
         this.setMode = this.setMode.bind(this);
     }
 
-    setMode(event) {
-        this.setState({[event.target.name] :event.target.value});
+    setMode(event : {target : {name: any; value: any;};}) {
+        this.setState({[event.target.name] :event.target.value} as Pick<IState, keyof IState>);
     }
 
     render() {
@@ -26,7 +31,7 @@ class MainRace extends React.Component {
 
         return(
             <div>
-                <ChooseRaceMode set={this.setMode} />
+                <ChooseRaceMode set={this.setMode as any} />
                 {data}
             </div>
         );

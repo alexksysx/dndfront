@@ -1,10 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import CreateCharacter from './CreateCharacter';
 import ViewCharacter from './ViewCharacter';
 import ChooseCharacterMode from "./ChooseCharacterMode";
 
-class MainCharacter extends React.Component {
-    constructor(props) {
+interface IState {
+    id: number,
+    action: string
+}
+
+class MainCharacter extends React.Component<any, IState> {
+    constructor(props: any) {
         super(props);
         this.state={
             action: "view",
@@ -13,8 +18,8 @@ class MainCharacter extends React.Component {
         this.setMode = this.setMode.bind(this);
     }
 
-    setMode(event) {
-        this.setState({[event.target.name] :event.target.value});
+    setMode(event: {target: {name: any; value: any;};}) {
+        this.setState({[event.target.name] :event.target.value} as Pick<IState, keyof IState>);
     }
 
     render() {
@@ -26,7 +31,7 @@ class MainCharacter extends React.Component {
 
         return(
             <div>
-                <ChooseCharacterMode set={this.setMode} />
+                <ChooseCharacterMode set={this.setMode as any} />
                 {data}
             </div>
         );

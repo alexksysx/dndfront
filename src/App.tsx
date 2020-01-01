@@ -1,13 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ButtonToolbar, Button} from 'react-bootstrap';
 import MainRace from './raceComponents/MainRace';
 import MainCharacter from './characterComponents/MainCharacter';
 
-class App extends React.Component {
+interface IState {
+  mode: string;
+}
+
+class App extends React.Component<any, IState> {
   
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state={
       mode: "race"
@@ -15,8 +19,9 @@ class App extends React.Component {
     this.setMode = this.setMode.bind(this);
   }
 
-  setMode(event) {
-    this.setState({[event.target.name]: event.target.value});
+  setMode(event: {target : {name: any; value: any;};}) : any {
+    const newState = { [event.target.name]: event.target.value } as Pick<IState, keyof IState>;
+    this.setState(newState);
   }
 
   render() {
@@ -26,8 +31,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <ButtonToolbar>
-          <Button name="mode" value="race" onClick={this.setMode}>Race</Button>
-          <Button name="mode" value="character" onClick={this.setMode}>Character</Button>
+          <Button name="mode" value="race" onClick={this.setMode as any}>Race</Button>
+          <Button name="mode" value="character" onClick={this.setMode as any}>Character</Button>
         </ButtonToolbar>
         <h1>React Test</h1>
         {data}

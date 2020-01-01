@@ -1,13 +1,19 @@
-import React from "react";
-import * as Constants from "./../Constants";
+import * as React from "react";
+import * as Constants from './../Constants';
 
-class ViewCharacter extends React.Component {
+interface IState {
+    id: number,
+    race: any,
+    status: boolean
+}
 
-    constructor(props) {
+class ViewRace extends React.Component<any, IState> {
+
+    constructor(props: any) {
         super(props);
         this.state = {
-            id: 117,
-            character: 0,
+            id: 78,
+            race : 0,
             status: true
         }
         this.getData = this.getData.bind(this);
@@ -18,11 +24,11 @@ class ViewCharacter extends React.Component {
     }
 
     async getData() {
-        let response = await fetch(Constants.URL + Constants.CHAR + this.state.id);
+        let response = await fetch(Constants.URL+ Constants.RACE + this.state.id);
         if(response.ok) {
             this.setState({status: true})
             let data = await response.json();
-            this.setState({character: data});
+            this.setState({race: data});
         }
         else {
             this.setState({status: false});
@@ -33,7 +39,7 @@ class ViewCharacter extends React.Component {
         if (this.state.status)
         return(
             <div>
-                <p>{this.state.character.name}</p>
+                <p>{this.state.race.name}</p>
             </div>
         )
         else return(
@@ -44,4 +50,4 @@ class ViewCharacter extends React.Component {
     }
 }
 
-export default ViewCharacter;
+export default ViewRace;

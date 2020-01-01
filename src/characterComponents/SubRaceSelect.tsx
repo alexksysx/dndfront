@@ -1,6 +1,11 @@
 import React from "react";
 
-class SubRaceSelect extends React.Component {
+interface IProps {
+    race: any,
+    handle: any
+}
+
+class SubRaceSelect extends React.Component<IProps, any> {
 
     render() {
         if (this.props.race == undefined) return null;
@@ -11,7 +16,7 @@ class SubRaceSelect extends React.Component {
             <div>
                 <label>Select subrace:</label>
                 <select onChange={this.props.handle}>
-                    {this.props.race.subRaces.map((subrace, key) => <option value={subrace.id}>{subrace.id}</option>)} 
+                    {this.props.race.subRaces.map((subrace: any, key: any) => <option value={subrace.id}>{subrace.id}</option>)} 
                 </select>
             </div>
         );

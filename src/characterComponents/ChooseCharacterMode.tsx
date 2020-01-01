@@ -1,6 +1,10 @@
 import React from "react";
 
-class ChooseCharacterMode extends React.Component {
+interface IProps {
+    set: (event : React.MouseEvent<HTMLButtonElement>) => void
+}
+
+class ChooseCharacterMode extends React.Component<IProps, any> {
     render() {
         return(
             <div>
