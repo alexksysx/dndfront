@@ -1,9 +1,18 @@
-import React from "react";
+import * as React from "react";
 import {postData} from './../fetchMethods';
 import * as Constants from './../Constants';
 
-class CreateRace extends React.Component {
-    constructor(props) {
+interface IState {
+    name: string,
+    description: string,
+    normalSpeed: number,
+    swimSpeed: number,
+    climbSpeed: number,
+    flySpeed: number
+}
+
+class CreateRace extends React.Component<any, IState> {
+    constructor(props: any) {
         super(props)
         this.state = {
             name: "",
@@ -18,11 +27,11 @@ class CreateRace extends React.Component {
         this.createRace = this.createRace.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({[event.target.name] : event.target.value});
+    handleChange(event: {target : {name: any; value: any;};}) {
+        this.setState({[event.target.name] : event.target.value} as Pick<IState, keyof IState>);
     }
 
-    handleSubmit(event) {
+    handleSubmit(event: any) {
         this.createRace();
         event.preventDefault();
     }

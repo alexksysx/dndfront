@@ -1,16 +1,26 @@
-import React from "react";
+import * as React from "react";
 import * as Constants from "./../Constants";
 import {postData} from './../fetchMethods';
 import RaceSelect from "./RaceSelect";
 import SubRaceSelect from './SubRaceSelect';
 
-class CreateRace extends React.Component {
-    constructor(props) {
+interface IState {
+    name: string,
+    race: number,
+    raceData: Array<any>,
+    subRace: number,
+    raceStatus: boolean
+}
+
+class CreateRace extends React.Component<any, IState> {
+    constructor(props: any) {
         super(props)
         this.state = {
             name: "",
             race: 0,
-           raceStatus: false
+            raceStatus: false,
+            subRace: 0,
+            raceData: [], 
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,25 +29,25 @@ class CreateRace extends React.Component {
         this.handleSubRaceSelect = this.handleSubRaceSelect.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({[event.target.name] : event.target.value});
+    handleChange(event: {target: {name: any; value: any;};}) {
+        this.setState({[event.target.name] : event.target.value} as Pick<IState, keyof IState>);
     }
 
-    handleSubmit(event) {
+    handleSubmit(event: any) {
         this.createCharacter();
         event.preventDefault();
     }
 
-    handleRaceSelect(event) {
+    handleRaceSelect(event: any) {
         this.setState({race: event.target.value});
-        let race = this.state.raceData.find(race => race.id == event.target.value);
+        let race = this.state.raceData.find((race => race.id == event.target.value));
         if (race.subRaces.length != 0) {
             this.setState({subRace: race.subRaces[0].id});
         }
     }
 
-    handleSubRaceSelect(event) {
-        this.setState({subRace: event.target.value});
+    handleSubRaceSelect(event: {target: {value: any;};}) {
+        this.setState({subRace: event.target.value} as Pick<IState, keyof IState>);
     }
 
     async getRaceData(){
@@ -69,11 +79,8 @@ class CreateRace extends React.Component {
                     <form onSubmit={this.handleSubmit}>
                         <label>Name:</label>
                         <input name="name" type="text" value={this.state.name} onChange={this.handleChange} /> <br/>
-                        <label>Select race:</label>
-                        <select onChange={this.handleRaceSelect}>
-                            {this.state.raceData.map((race, key) => <RaceSelect key={race.id} race={race}/>)}
-                        </select> <br/>
-                        <SubRaceSelect handle={this.handleSubRaceSelect} race={this.state.raceData.find(race => race.id == this.state.race)}/> <br/>
+                        <RaceSelect raceData={this.state.raceData} handle={this.handleRaceSelect}/>
+                        <SubRaceSelect handle={this.handleSubRaceSelect} race={this.state.raceData.find((race: { id: number; }) => race.id == this.state.race)}/> <br/>
                         <input type="submit" value="Send" />
                     </form> 
                 </div>
