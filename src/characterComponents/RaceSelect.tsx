@@ -1,14 +1,20 @@
 import React from "react";
 
 interface IProps {
-    race: any
+    raceData: any,
+    handle: any;
 }
 
 class RaceSelect extends React.Component<IProps, any> {
 
     render() {
         return(
-        <option value={this.props.race.id}>{this.props.race.name}</option>
+            <div>
+                <label>Select race:</label>
+                <select onChange={this.props.handle}>
+                    {this.props.raceData.map((race: any, key: number) => <option key={race.id} value={race.id}>{race.name}</option>)}
+                </select> <br/>
+            </div>
         )
     }
 }

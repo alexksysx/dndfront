@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {ButtonToolbar, Button} from 'react-bootstrap';
+import {Button, ButtonGroup} from 'react-bootstrap';
 import MainRace from './raceComponents/MainRace';
 import MainCharacter from './characterComponents/MainCharacter';
 
@@ -30,10 +30,10 @@ class App extends React.Component<any, IState> {
     else if (this.state.mode === "character") data = (<MainCharacter/>)
     return (
       <div className="App">
-        <ButtonToolbar>
+        <ButtonGroup>
           <Button name="mode" value="race" onClick={this.setMode as any}>Race</Button>
           <Button name="mode" value="character" onClick={this.setMode as any}>Character</Button>
-        </ButtonToolbar>
+        </ButtonGroup>
         <h1>React Test</h1>
         {data}
       </div>

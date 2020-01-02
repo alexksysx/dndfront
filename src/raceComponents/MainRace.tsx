@@ -1,11 +1,14 @@
 import * as React from 'react';
 import CreateRace from './CreateRace';
 import ViewRace from './ViewRace';
-import ChooseRaceMode from './ChooseRaceMode';
+import ModeSelect from './../ModeSelect';
 
 interface IState {
     action: string,
 }
+
+const modes: Array<string> = ["create", "view"];
+const buttonNames: Array<string> = ["Create Race", "View Race"];
 
 class MainRace extends React.Component<any, IState> {
     constructor(props :any) {
@@ -29,7 +32,7 @@ class MainRace extends React.Component<any, IState> {
 
         return(
             <div>
-                <ChooseRaceMode set={this.setMode as any} />
+                <ModeSelect action="action" handle={this.setMode} modes={modes} names={buttonNames}/>
                 {data}
             </div>
         );

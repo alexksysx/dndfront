@@ -1,19 +1,20 @@
 import * as React from 'react';
 import CreateCharacter from './CreateCharacter';
 import ViewCharacter from './ViewCharacter';
-import ChooseCharacterMode from "./ChooseCharacterMode";
+import ModeSelect from './../ModeSelect';
 
 interface IState {
-    id: number,
     action: string
 }
+
+const actions: Array<string> = ["create", "view"];
+const buttonNames: Array<string> = ["Create Character", "View Character"];
 
 class MainCharacter extends React.Component<any, IState> {
     constructor(props: any) {
         super(props);
         this.state={
             action: "view",
-            id: 0
         };
         this.setMode = this.setMode.bind(this);
     }
@@ -31,7 +32,7 @@ class MainCharacter extends React.Component<any, IState> {
 
         return(
             <div>
-                <ChooseCharacterMode set={this.setMode as any} />
+                <ModeSelect action="action" handle={this.setMode} modes={actions} names={buttonNames}/>
                 {data}
             </div>
         );

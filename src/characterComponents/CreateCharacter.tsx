@@ -79,10 +79,7 @@ class CreateRace extends React.Component<any, IState> {
                     <form onSubmit={this.handleSubmit}>
                         <label>Name:</label>
                         <input name="name" type="text" value={this.state.name} onChange={this.handleChange} /> <br/>
-                        <label>Select race:</label>
-                        <select onChange={this.handleRaceSelect}>
-                            {this.state.raceData.map((race: any, key: number) => <RaceSelect key={race.id} race={race}/>)}
-                        </select> <br/>
+                        <RaceSelect raceData={this.state.raceData} handle={this.handleRaceSelect}/>
                         <SubRaceSelect handle={this.handleSubRaceSelect} race={this.state.raceData.find((race: { id: number; }) => race.id == this.state.race)}/> <br/>
                         <input type="submit" value="Send" />
                     </form> 
