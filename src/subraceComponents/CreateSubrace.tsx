@@ -99,7 +99,7 @@ class CreateSubrace extends React.Component<any, IState> {
         let data: any = (<br/>);
         if (this.state.status && !this.state.isEmpty && this.state.raceData.length > 1) data = (
             <div>
-                <a>Select race</a>
+                <h2>Select race</h2>
                 <ObjectSelect handle={this.onRaceSelect} data={this.state.raceData} />
             </div>);
         if (this.state.isEmpty)
@@ -108,6 +108,7 @@ class CreateSubrace extends React.Component<any, IState> {
                 Race data is Empty. Create new race first.
             </div>
         );
+        if (this.state.status)
             return(
                 <div>
                     <h1>Subrace Creation</h1>
@@ -132,7 +133,8 @@ class CreateSubrace extends React.Component<any, IState> {
                         <input type="submit" value="Send"/>
                     </form>
                 </div>
-            )
+            );
+        else return(<h2>Loading</h2>);
     }
 
 }
