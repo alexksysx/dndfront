@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Constants from './../Constants';
-import ViewSelect from '../ViewSelect';
+import ObjectSelect from '../ObjectSelect';
 interface IState{
     character: any,
     status: boolean,
@@ -54,7 +54,7 @@ class ViewCharacter extends React.Component<any, IState> {
         if (this.state.status)
             data = (this.state.character.name);
         if (!this.state.isEmpty && this.state.status && (this.state.charData.length > 1))
-            selChar = (<ViewSelect handle={this.onChangeCharacter} data={this.state.charData} />);
+            selChar = (<ObjectSelect handle={this.onChangeCharacter} data={this.state.charData} />);
         return(
             <div>
                 {data} <br/>

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import MainRace from './raceComponents/MainRace';
 import MainCharacter from './characterComponents/MainCharacter';
+import MainSubrace from './subraceComponents/MainSubrace';
 
 interface IState {
   mode: string;
@@ -26,13 +27,15 @@ class App extends React.Component<any, IState> {
 
   render() {
     let data;
-    if (this.state.mode === "race") data = (<MainRace/>)
-    else if (this.state.mode === "character") data = (<MainCharacter/>)
+    if (this.state.mode === "race") data = (<MainRace/>);
+    else if (this.state.mode === "character") data = (<MainCharacter/>);
+    else if (this.state.mode === "subrace") data = (<MainSubrace/>);
     return (
       <div className="App">
         <ButtonGroup>
           <Button name="mode" value="race" onClick={this.setMode as any}>Race</Button>
           <Button name="mode" value="character" onClick={this.setMode as any}>Character</Button>
+          <Button name="mode" value="subrace" onClick={this.setMode as any}>Subrace</Button>
         </ButtonGroup>
         <h1>React Test</h1>
         {data}
