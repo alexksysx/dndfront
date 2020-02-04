@@ -45,7 +45,7 @@ class CreateSubrace extends React.Component<any, IState> {
     }
 
     async getData() {
-        let response = await fetch(Constants.URL+ Constants.RACE);
+        let response = await fetch(Constants.SUBRACE_URL);
         if(response.ok) {
             let data : Array<object> = await response.json();
             if (data.length == 0)
@@ -78,7 +78,7 @@ class CreateSubrace extends React.Component<any, IState> {
             wisdomBonus: this.state.wisdomBonus,
             charismaBonus: this.state.charismaBonus
         }
-        postData(Constants.URL + Constants.SUBRACE, dataPost).then(data => console.log(JSON.stringify(data)));
+        postData(Constants.SUBRACE_URL, dataPost).then(data => console.log(JSON.stringify(data)));
     }
 
     onRaceSelect(event: {target: { value:number;};}) {

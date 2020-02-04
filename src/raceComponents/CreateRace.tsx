@@ -61,7 +61,7 @@ class CreateRace extends React.Component<any, IState> {
 
     createRace() {
         const data = this.state;         
-        postData(Constants.URL + Constants.RACE, data).then(data => console.log(JSON.stringify(data)));
+        postData(Constants.RACE_URL, data).then(data => console.log(JSON.stringify(data)));
     }
 
 }

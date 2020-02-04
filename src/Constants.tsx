@@ -1,4 +1,3 @@
-export const URL = "https://alexksysx.me/api";
-export const CHAR = "characters/";
-export const RACE = "race/";
-export const SUBRACE = "subrace/";
+export const CHAR_URL = "https://alexksysx.me/api/characters/";
+export const RACE_URL = "https://alexksysx.me/api/race/";
+export const SUBRACE_URL = "https://alexksysx.me/api/subrace/";

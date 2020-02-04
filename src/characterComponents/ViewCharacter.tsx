@@ -27,7 +27,7 @@ class ViewCharacter extends React.Component<any, IState> {
     }
 
     async getData() {
-        let response = await fetch(Constants.URL + Constants.CHAR);
+        let response = await fetch(Constants.CHAR_URL);
         if (response.ok) {
             let data = await response.json();
             if (data.length == 0) {

@@ -33,7 +33,7 @@ class ViewRace extends React.Component<any, IState> {
     }
 
     async getData() {
-        let response = await fetch(Constants.URL+ Constants.RACE);
+        let response = await fetch(Constants.RACE_URL);
         if(response.ok) {
             let data : Array<object> = await response.json();
             if (data.length == 0)

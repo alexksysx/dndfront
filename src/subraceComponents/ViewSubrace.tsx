@@ -22,7 +22,7 @@ class ViewSubrace extends React.Component<any, IState> {
     }
 
     async getData() {
-        let response = await fetch(Constants.URL + Constants.SUBRACE);
+        let response = await fetch(Constants.SUBRACE_URL);
         if(response.ok) {
             let data : Array<object> = await response.json();
             if (data.length == 0) {

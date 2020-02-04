@@ -26,7 +26,7 @@ class MainSubrace extends React.Component<any, IState> {
     render() {
         let data = (<br/>);
         if (this.state.action === "create")
-            data = (<CreateSubrace/>);    //TODO change to Create
+            data = (<CreateSubrace/>);
         if (this.state.action === "view")
             data = (<ViewSubrace/>);
         return(

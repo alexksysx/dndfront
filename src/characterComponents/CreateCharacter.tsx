@@ -51,7 +51,7 @@ class CreateRace extends React.Component<any, IState> {
     }
 
     async getRaceData(){
-        let responseRace = await fetch(Constants.URL + Constants.RACE);
+        let responseRace = await fetch(Constants.RACE_URL);
         if (responseRace.ok){
             let data = await responseRace.json();
             this.setState({raceData : data});
@@ -95,7 +95,7 @@ class CreateRace extends React.Component<any, IState> {
             "race": this.state.race,
             "subRace": this.state.subRace
         };
-        postData(Constants.URL + Constants.CHAR, data).then(data => console.log(JSON.stringify(data)));
+        postData(Constants.CHAR_URL, data).then(data => console.log(JSON.stringify(data)));
     }
 
 
