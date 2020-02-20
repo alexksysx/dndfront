@@ -5,6 +5,12 @@ import {Button, ButtonGroup} from 'react-bootstrap';
 import MainRace from './raceComponents/MainRace';
 import MainCharacter from './characterComponents/MainCharacter';
 import MainSubrace from './subraceComponents/MainSubrace';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 interface IState {
   mode: string;
@@ -26,19 +32,32 @@ class App extends React.Component<any, IState> {
   }
 
   render() {
-    let data;
-    if (this.state.mode === "race") data = (<MainRace/>);
-    else if (this.state.mode === "character") data = (<MainCharacter/>);
-    else if (this.state.mode === "subrace") data = (<MainSubrace/>);
+    // let data;
+    // if (this.state.mode === "race") data = (<MainRace/>);
+    // else if (this.state.mode === "character") data = (<MainCharacter/>);
+    // else if (this.state.mode === "subrace") data = (<MainSubrace/>);
     return (
       <div className="App">
-        <ButtonGroup>
-          <Button name="mode" value="race" onClick={this.setMode as any}>Race</Button>
-          <Button name="mode" value="character" onClick={this.setMode as any}>Character</Button>
-          <Button name="mode" value="subrace" onClick={this.setMode as any}>Subrace</Button>
-        </ButtonGroup>
-        <h1>React Test</h1>
-        {data}
+        <Router>
+          <div>
+            <Link to="/race">
+              <Button>Race</Button>
+            </Link>
+            <Link to="/character">
+              <Button>Character</Button>
+            </Link>
+            <Link to="/subrace">
+              <Button>SubRace</Button>
+            </Link>
+            <h2>Hello React!</h2>
+            <Switch>
+              <Route exact path="/" component={MainRace}/>
+              <Route path="/race" component={MainRace}/>
+              <Route path="/character" component={MainCharacter}/>
+              <Route path="/subrace" component={MainSubrace}/>
+            </Switch>
+          </div>
+        </Router>
       </div>
     );
   }
