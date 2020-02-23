@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Spinner} from "react-bootstrap";
 import * as Constants from './../Constants';
 import ObjectSelect from '../ObjectSelect';
 interface IState{
@@ -52,13 +53,27 @@ class ViewCharacter extends React.Component<any, IState> {
         let data: any = (<br/>);
         let selChar: any = (<br/>);
         if (this.state.status)
-            data = (this.state.character.name);
+            data = (<div>
+                Character name: <br/>
+                {this.state.character.name} <br/>
+                Character race: <br/>
+                {this.state.character.race.name} <br/>
+                </div>
+                );
+        else {
+            data = (<div>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading</span>
+                </Spinner>
+            </div>);
+        }
         if (!this.state.isEmpty && this.state.status && (this.state.charData.length > 1))
             selChar = (<ObjectSelect handle={this.onChangeCharacter} data={this.state.charData} />);
         return(
             <div>
-                {data} <br/>
+                <br/>
                 {selChar} <br/>
+                {data} <br/>
             </div>
         );
     }
