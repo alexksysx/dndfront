@@ -69,6 +69,7 @@ class ViewRace extends React.Component<any, IState> {
         }
         return (
             <div>
+                <h1>View Race</h1>
                 <br/>
                 {data} <br/>
                 {selRace} <br/>

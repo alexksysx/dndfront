@@ -1,15 +1,19 @@
 import * as React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Navbar, Nav} from 'react-bootstrap';
-import MainRace from './raceComponents/MainRace';
-import MainCharacter from './characterComponents/MainCharacter';
-import MainSubrace from './subraceComponents/MainSubrace';
+import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
+import ViewRace from './raceComponents/ViewRace';
+import CreateRace from './raceComponents/CreateRace';
+import ViewCharacter from './characterComponents/ViewCharacter';
+import CreateCharacter from './characterComponents/CreateCharacter';
+import ViewSubrace from './subraceComponents/ViewSubrace';
+import CreateSubrace from './subraceComponents/CreateSubrace';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  NavLink
 } from "react-router-dom";
 
 interface IState {
@@ -25,18 +29,42 @@ class App extends React.Component<any, IState> {
           <Navbar bg="dark" variant="dark">
             <Navbar.Brand as={Link} to="/">D&D Project</Navbar.Brand>
             <Nav>
-              <Link className="nav-link" to="/race">Race</Link>
-              <Link className="nav-link" to="/character">Character</Link>
-              <Link className="nav-link" to="/subrace">Subrace</Link>
+              <NavDropdown title="Race" id="basic-nav-drodown">
+                <NavDropdown.Item>
+                  <NavLink to="/race/view" style={{color: "black"}}>View</NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <NavLink to="/race/create" style={{color: "black"}}>Create</NavLink>
+                </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown title="Subrace" id="basic-nav-drodown">
+                <NavDropdown.Item>
+                  <NavLink to="/subrace/view" style={{color: "black"}}>View</NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <NavLink to="/subrace/create" style={{color: "black"}}>Create</NavLink>
+                </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown title="Character" id="basic-nav-drodown">
+                <NavDropdown.Item>
+                  <NavLink to="/character/view" style={{color: "black"}}>View</NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <NavLink to="/character/create" style={{color: "black"}}>Create</NavLink>
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Navbar>
           <div>
             <h2>Hello React!</h2>
             <Switch>
-              <Route exact path="/" component={MainRace}/>
-              <Route path="/race" component={MainRace}/>
-              <Route path="/character" component={MainCharacter}/>
-              <Route path="/subrace" component={MainSubrace}/>
+              <Route exact path="/" component={ViewRace}/>
+              <Route path="/race/view" component={ViewRace}/>
+              <Route path="/race/create" component={CreateRace}/>
+              <Route path="/character/view" component={ViewCharacter}/>
+              <Route path="/character/create" component={CreateCharacter}/>
+              <Route path="/subrace/view" component={ViewSubrace}/>
+              <Route path="/subrace/create" component={CreateSubrace}/>
             </Switch>
           </div>
         </Router>
