@@ -1,7 +1,13 @@
 import * as React from 'react';
-import ModeSelect from '../ModeSelect';
 import ViewSubrace from './ViewSubrace';
 import CreateSubrace from './CreateSubrace';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import {Button} from "react-bootstrap"
 
 interface IState {
     action: string,
@@ -11,28 +17,23 @@ const modes: Array<string> = ["create", "view"];
 const buttonNames: Array<string> = ["Create Subace", "View Subrace"];
 
 class MainSubrace extends React.Component<any, IState> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            action: "view",
-        }
-        this.setMode = this.setMode.bind(this);
-    }
-
-    setMode(event : {target : {name: any; value: any;};}) {
-        this.setState({[event.target.name] :event.target.value} as Pick<IState, keyof IState>);
-    }
 
     render() {
-        let data = (<br/>);
-        if (this.state.action === "create")
-            data = (<CreateSubrace/>);
-        if (this.state.action === "view")
-            data = (<ViewSubrace/>);
         return(
             <div>
-                <ModeSelect action="action" handle={this.setMode} names={buttonNames} modes={modes}/>
-                {data}
+                <Router>
+                    <Link to="/subrace/create">
+                        <Button>Create</Button>
+                    </Link>
+                    <Link to="/subrace/view">
+                        <Button>View</Button>
+                    </Link>
+                    <Switch>
+                        <Route path="/subrace/create" component={CreateSubrace}/>
+                        <Route path="/subrece/view" component={ViewSubrace}/>
+                        <Route path="/subrace" component={ViewSubrace}/>
+                    </Switch>
+                </Router>
             </div>
         );
     }

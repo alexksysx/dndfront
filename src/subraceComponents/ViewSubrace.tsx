@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as Constants from './../Constants';
 import ObjectSelect from './../ObjectSelect';
+import { Spinner } from 'react-bootstrap';
 
 interface IState {
     subrace: any,
@@ -53,11 +54,19 @@ class ViewSubrace extends React.Component<any, IState> {
         if (this.state.status) {
             data = this.state.subrace.name;
         }
+        else {
+            data = (<div>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading</span>
+                </Spinner>
+            </div>);
+        }
         if (!this.state.isEmpty && this.state.status && (this.state.subraceData.length > 1)) {
             selSubrace = <ObjectSelect handle={this.onSubraceSelect} data={this.state.subraceData} />
         }
         return(
             <div>
+                <br/>
                 {data} <br/>
                 {selSubrace} <br/>
             </div>

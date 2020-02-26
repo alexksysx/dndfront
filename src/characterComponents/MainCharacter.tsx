@@ -1,7 +1,14 @@
 import * as React from 'react';
 import CreateCharacter from './CreateCharacter';
 import ViewCharacter from './ViewCharacter';
-import ModeSelect from './../ModeSelect';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import {Button} from "react-bootstrap"
+
 
 interface IState {
     action: string
@@ -11,29 +18,23 @@ const actions: Array<string> = ["create", "view"];
 const buttonNames: Array<string> = ["Create Character", "View Character"];
 
 class MainCharacter extends React.Component<any, IState> {
-    constructor(props: any) {
-        super(props);
-        this.state={
-            action: "view",
-        };
-        this.setMode = this.setMode.bind(this);
-    }
-
-    setMode(event: {target: {name: any; value: any;};}) {
-        this.setState({[event.target.name] :event.target.value} as Pick<IState, keyof IState>);
-    }
 
     render() {
-        let data;
-        if (this.state.action === "view") 
-            data  = (<ViewCharacter />);
-        if (this.state.action === "create") 
-            data  = (<CreateCharacter />);
-
         return(
             <div>
-                <ModeSelect action="action" handle={this.setMode} modes={actions} names={buttonNames}/>
-                {data}
+                <Router>
+                    <Link to="/character/create">
+                        <Button>Create</Button>
+                    </Link>
+                    <Link to="/character/view">
+                        <Button>View</Button>
+                    </Link>
+                    <Switch>
+                        <Route path="/character/create" component={CreateCharacter}/>
+                        <Route path="/character/view" component={ViewCharacter}/>
+                        <Route path="/character" component={ViewCharacter}/>
+                    </Switch>
+                </Router>               
             </div>
         );
     }

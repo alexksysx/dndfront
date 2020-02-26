@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as Constants from './../Constants';
 import ObjectSelect from './../ObjectSelect';
+import {Spinner} from "react-bootstrap";
 
 interface IState {
     raceData: Array<any>,
@@ -53,13 +54,22 @@ class ViewRace extends React.Component<any, IState> {
     render() {
         let data: any = (<br/>);
         let selRace: any = (<br/>);
-        if (this.state.status)
+        if (this.state.status) {
             data = (this.state.race.name);
+        }
+        else {
+            data = (<div>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading</span>
+                </Spinner>
+            </div>);
+        }
         if (!this.state.isEmpty && this.state.status && (this.state.raceData.length > 1)) {
             selRace = <ObjectSelect handle={this.onRaceSelect} data={this.state.raceData} />
         }
         return (
             <div>
+                <br/>
                 {data} <br/>
                 {selRace} <br/>
             </div>
