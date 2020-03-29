@@ -8,3 +8,4 @@ export const CHAR_URL = process.env.REACT_APP_CHAR_URL as string;
 export const RACE_URL = process.env.REACT_APP_RACE_URL as string;
 export const SUBRACE_URL = process.env.REACT_APP_SUBRACE_URL as string;
 export const IMAGE_UPLOAD_URL = process.env.REACT_APP_IMAGE_UPLOAD_URL as string;
+export const LOGIN_URL = process.env.REACT_APP_LOGIN_URL as string;

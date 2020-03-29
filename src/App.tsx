@@ -9,6 +9,7 @@ import CreateCharacter from './characterComponents/CreateCharacter';
 import ViewSubrace from './subraceComponents/ViewSubrace';
 import CreateSubrace from './subraceComponents/CreateSubrace';
 import ImageUpload from './utilComponent/ImageUpload';
+import LoginComponent from './utilComponent/LoginComponent';
 import {
   BrowserRouter as Router,
   Switch,
@@ -72,6 +73,7 @@ class App extends React.Component<any, IState> {
               <Route path="/subrace/view" component={ViewSubrace}/>
               <Route path="/subrace/create" component={CreateSubrace}/>
               <Route path="/image" component={ImageUpload}/>
+              <Route path="/login" component={LoginComponent}/>
             </Switch>
           </div>
         </Router>
