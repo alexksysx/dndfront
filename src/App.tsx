@@ -8,6 +8,7 @@ import ViewCharacter from './characterComponents/ViewCharacter';
 import CreateCharacter from './characterComponents/CreateCharacter';
 import ViewSubrace from './subraceComponents/ViewSubrace';
 import CreateSubrace from './subraceComponents/CreateSubrace';
+import ImageUpload from './utilComponent/ImageUpload';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,11 +18,16 @@ import {
 } from "react-router-dom";
 
 interface IState {
-  mode: string;
+  token: string;
 }
 
+
 class App extends React.Component<any, IState> {
-  
+
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -65,6 +71,7 @@ class App extends React.Component<any, IState> {
               <Route path="/character/create" component={CreateCharacter}/>
               <Route path="/subrace/view" component={ViewSubrace}/>
               <Route path="/subrace/create" component={CreateSubrace}/>
+              <Route path="/image" component={ImageUpload}/>
             </Switch>
           </div>
         </Router>
